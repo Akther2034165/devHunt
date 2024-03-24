@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-2xl font-bold my-10 text-center">Project Form</h2>
+<form action="" method="POST" enctype="multipart/form-data"
+    class="w-[80%] border rounded-md shadow-sm  p-5 sm:p-10 mx-auto">
+    {% csrf_token %}
+    <div class="mb-2 flex flex-col sm:flex-row gap-5 justify-between">
+        <div class="w-full sm:w-[80%]">
+            <label for="{{ form.title.id_for_label }}" class="block font-bold mb-2">Title</label>
+            {{ form.title }}
+        </div>
+        <div class="w-full sm:w-[80%]">
+            <label for="{{ form.featured_image.id_for_label }}" class="block font-bold mb-2">Featured Image</label>
+            {{ form.featured_image }}
+        </div>
+    </div>
+    <div class="mb-2 flex flex-col sm:flex-row gap-5 justify-between">
+        <div class="w-full sm:w-[100%]">
+            <label for="{{ form.description.id_for_label }}" class="block font-bold mb-2">Description</label>
+            {{ form.description }}
+        </div>
+        <div class="w-[100%] sm:w-[20%]">
+            <label for="{{ form.tags.id_for_label }}" class="block font-bold mb-2">Tags</label>
+            {{ form.tags }}
+        </div>
+    </div>
+    <div class="mb-2 flex flex-col sm:flex-row gap-5 justify-between">
+        <div class="w-full sm:w-[100%]">
+            <label for="{{ form.demo_link.id_for_label }}" class="block font-bold mb-2">Demo Link</label>
+            {{ form.demo_link }}
+        </div>
+        <div class="w-full sm:w-[100%]">
+            <label for="{{ form.source_link.id_for_label }}" class="block font-bold mb-2">Source Link</label>
+            {{ form.source_link }}
+        </div>
+    </div>
+
+    <button class="btn btn-outline btn-neutral" type="submit">Submit</button>
+</form>
+{% endblock content %}

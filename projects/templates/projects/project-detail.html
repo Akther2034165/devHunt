@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="card">
+    <h1 class="text-center my-5 font-semibold text-3xl text-gray-500">Project</h1>
+
+    <div class="flex flex-col sm:flex-row justify-between gap-5">
+        <div class="w-80 px-4">
+            <h2 class="text-3xl uppercase font-semibold">Tools And Tech</h2>
+            <div class="flex flex-wrap gap-2 mt-5">
+                {% for tag in project.tags.all %}
+                <div class="badge badge-neutral px-3 py-5 text-white text-lg font-semibold">
+                    {{tag}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-5">
+                <div class="badge badge-outline"><a href="{{ project.source_link }}">Source Code</a></div>
+                <div class="badge badge-outline"><a href="{{ project.demo_link }}">Demo Link</a></div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="card border h-auto w-full bg-base-100 shadow-md ">
+                <figure><img src="{{project.featured_image.url}}" class="w-100 h-80" alt="Shoes" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        {{project.title}}
+                        <div class="badge badge-secondary">Author</div>
+                    </h2>
+                    <p>{{project.description}}</p>
+                    <div>
+                        <h3>Feedback</h3>
+                        <p>{{project.vote_ratio}}% Positive Feedback
+                            ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}} Vote{{s}}) </p>
+                    </div>
+                    <div class="flex ">
+                        <a href="{% url 'update-project' project.id %}">
+                            <button class="btn btn-success">Update</button>
+                        </a>
+                        <a href="{% url 'delete-project' project.id %}">
+                            <button class="btn btn-warning ms-3">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

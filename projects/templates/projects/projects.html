@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section id="card">
+    <h1 class="text-center my-5 font-semibold text-3xl text-gray-500">Projects</h1>
+    <div class="flex gap-5 flex-col sm:flex-row p-4 flex-wrap">
+        {% for project in projects %}
+        <a href="{% url 'project' project.id %}">
+            <div class="card h-[400px] w-[100%] sm:w-[300px] bg-base-100 shadow-md ">
+                <figure> <img src="{{project.featured_image.url}}" class="w-full object-fill h-[200px]" alt="Shoes" />
+                </figure>
+
+                <div class="card-body">
+                    <h2 class="card-title">
+                        {{project.title}}
+
+                    </h2>
+                    <div class="badge badge-secondary">{{project.owner.name}}</div>
+                    <p>{{project.description}}</p>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tag in project.tags.all %}
+                        <div class="badge badge-info text-white font-semibold">
+                            {{tag}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-actions justify-start">
+                        <div class="badge badge-outline"><a href="{{ project.source_link }}">Source </a></div>
+                        <div class="badge badge-outline"><a href="{{ project.demo_link }}">Demo</a></div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
